@@ -3,43 +3,11 @@ from flask import Flask, jsonify, request, send_file, after_this_request, Respon
 from pytube import YouTube
 from io import BytesIO
 import instaloader
-import requests
 from flask_cors import CORS
-import subprocess
-import os
+
 
 app = Flask(__name__)
 cors = CORS(app)
-
-
-import subprocess
-
-import tempfile
-
-# Specify the directory path for the temporary files
-temp_dir = os.path.join(os.getcwd(), "temp")
-
-
-def merge_video_audio(video_path, audio_path):
-    cmd = [
-        "ffmpeg",
-        "-i",
-        video_path,
-        "-i",
-        audio_path,
-        "-c:v",
-        "copy",
-        "-c:a",
-        "copy",
-        "-strict",
-        "-2",
-        "-f",
-        "mp4",
-        "pipe:1",
-    ]
-    process = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-    output, _ = process.communicate()
-    return output
 
 
 @app.route("/homelink")
